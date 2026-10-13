@@ -9,7 +9,7 @@ feeds Google Calendar can subscribe to. A GitHub Action rebuilds them daily.
 | `docs/nsd-10u.ics` `nsd-12u.ics` `nsd-14u.ics` | one team, plus all-day notes |
 
 Subscribe: Google Calendar (web) -> Other calendars (+) -> From URL -> paste
-`https://<user>.github.io/<repo>/nsd-all.ics`. Share that same URL with others.
+`https://selbereth.github.io/nsd-calendar/nsd-all.ics`. Share that same URL with others.
 Google refreshes subscribed calendars every several hours to a day.
 
 Rules: one event per team per day; the description holds that whole day's text from
