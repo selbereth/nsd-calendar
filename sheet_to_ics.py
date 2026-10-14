@@ -30,12 +30,19 @@ TEAM_RE = re.compile(r"^(10u|12u|14u)\b\s*(.*)$", re.I)
 TIME_RE = re.compile(
     r"^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b\s*(.*)$", re.I
 )
-# (pattern, name shown in the calendar). Order matters only for lines naming two places.
+# (pattern, name). Order matters only for lines naming two places.
 LOCATIONS = [
     (re.compile(r"old\s+vida", re.I), "Old VIDA"),
     (re.compile(r"\bvmms\b", re.I), "VMMS"),
     (re.compile(r"\bwave\b", re.I), "The Wave"),
 ]
+# Parking-lot coordinates used as the LOCATION. No venue name: Google resolves names
+# and street addresses to the wrong lot. The name goes at the top of the description.
+COORDS = {
+    "Old VIDA": "33.204396,-117.2575485",
+    "VMMS": "33.2046006,-117.2373799",
+    "The Wave": "33.199571,-117.245795",
+}
 CLOSED_RE = re.compile(r"closed|cancel|no practice|no school", re.I)
 
 
@@ -128,7 +135,11 @@ def build_events(days):
         d, lines = day["date"], day["lines"]
         day_loc = next((find_location(ln) for ln in lines if is_location_only(ln)), None)
         header = f"{d:%a %-d-%b}"
-        description = "\n".join([header, *lines, "", f"Spreadsheet: {SHEET_URL}"])
+        base = "\n".join([header, *lines, "", f"Spreadsheet: {SHEET_URL}"])
+
+        def describe(place):
+            return f"{place}\n\n{base}" if place else base
+
         notes = []
         for ln in lines:
             tm = TEAM_RE.match(ln)
@@ -145,8 +156,9 @@ def build_events(days):
                     "summary": f"{team} Water Polo",
                     "start": datetime(d.year, d.month, d.day, sh, sm, tzinfo=TZ),
                     "end": datetime(d.year, d.month, d.day, eh, em, tzinfo=TZ),
-                    "location": loc,
-                    "description": description,
+                    "place": loc,
+                    "location": COORDS.get(loc),
+                    "description": describe(loc),
                 })
             elif not is_location_only(ln):
                 notes.append(ln)
@@ -159,8 +171,9 @@ def build_events(days):
                 "team": None,
                 "summary": title[:120],
                 "all_day": d,
-                "location": day_loc,
-                "description": description,
+                "place": day_loc,
+                "location": COORDS.get(day_loc),
+                "description": describe(day_loc),
             })
     return events
 

@@ -23,11 +23,12 @@ class Parse(unittest.TestCase):
     def test_time_and_default_location(self):
         e = self.one("20261012-12u@nsd-calendar")
         self.assertEqual((e["start"].hour, e["start"].minute, e["end"].hour, e["end"].minute), (19, 0, 20, 30))
-        self.assertEqual(e["location"], "Old VIDA")
+        self.assertEqual(e["location"], s.COORDS["Old VIDA"])
+        self.assertTrue(e["description"].startswith("Old VIDA\n\nMon 12-Oct") or e["description"].startswith("Old VIDA\n\n"))
 
     def test_line_location_overrides(self):
-        self.assertEqual(self.one("20260914-10u@nsd-calendar")["location"], "The Wave")
-        self.assertEqual(self.one("20260908-10u@nsd-calendar")["location"], "VMMS")
+        self.assertEqual(self.one("20260914-10u@nsd-calendar")["location"], s.COORDS["The Wave"])
+        self.assertEqual(self.one("20260908-10u@nsd-calendar")["location"], s.COORDS["VMMS"])
 
     def test_off_line_makes_no_event(self):
         uids = {e["uid"] for e in self.events}
