@@ -43,6 +43,9 @@ COORDS = {
     "VMMS": "33.2046006,-117.2373799",
     "The Wave": "33.199571,-117.245795",
 }
+# A Saturday note like "2 games each day" spans Sunday too; the sheet text just spills
+# over the empty Sunday box, so nothing in the CSV says so.
+TWO_DAY_RE = re.compile(r"each day|both days|saturday\s*(and|&|-)\s*sunday|sat\s*[-&/]\s*sun", re.I)
 CLOSED_RE = re.compile(r"closed|cancel|no practice|no school", re.I)
 
 
@@ -131,10 +134,15 @@ def parse_grid(csv_text, today=None):
 def build_events(days):
     """Practice events (one per team per day) and all-day notes."""
     events = []
-    for day in days:
+    for i, day in enumerate(days):
         d, lines = day["date"], day["lines"]
         day_loc = next((find_location(ln) for ln in lines if is_location_only(ln)), None)
         header = f"{d:%a %-d-%b}"
+        next_day = days[i + 1] if i + 1 < len(days) else None
+        spans_sunday = (d.weekday() == 5 and next_day and not next_day["lines"]
+                        and any(TWO_DAY_RE.search(ln) for ln in lines))
+        if spans_sunday:
+            header = f"{d:%a %-d-%b} - {next_day['date']:%a %-d-%b}"
         base = "\n".join([header, *lines, "", f"Spreadsheet: {SHEET_URL}"])
 
         def describe(place):
@@ -171,6 +179,7 @@ def build_events(days):
                 "team": None,
                 "summary": title[:120],
                 "all_day": d,
+                "all_day_end": d + timedelta(days=2 if spans_sunday else 1),
                 "place": day_loc,
                 "location": COORDS.get(day_loc),
                 "description": describe(day_loc),
@@ -216,7 +225,7 @@ def to_ics(events, name):
         lines += ["BEGIN:VEVENT", f"UID:{e['uid']}", "DTSTAMP:20260101T000000Z"]
         if "all_day" in e:
             d = e["all_day"]
-            lines += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{d + timedelta(days=1):%Y%m%d}",
+            lines += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{e['all_day_end']:%Y%m%d}",
                       "TRANSP:TRANSPARENT"]
         else:
             lines += [f"DTSTART:{utc(e['start'])}", f"DTEND:{utc(e['end'])}"]

@@ -42,6 +42,13 @@ class Parse(unittest.TestCase):
         self.assertIn("each team plays 2 games", e["description"])
         self.assertIsNone(self.one("20261005-note@nsd-calendar")["location"])
 
+    def test_each_day_saturday_note_spans_sunday(self):
+        e = self.one("20261003-note@nsd-calendar")
+        self.assertEqual(e["all_day_end"], date(2026, 10, 5))
+        self.assertTrue(e["description"].startswith("Sat 3-Oct - Sun 4-Oct"))
+        self.assertEqual(self.one("20261114-note@nsd-calendar")["all_day_end"], date(2026, 11, 15))
+        self.assertEqual(self.one("20260920-note@nsd-calendar")["all_day_end"], date(2026, 9, 21))
+
     def test_canceled_title(self):
         self.assertEqual(self.one("20261001-note@nsd-calendar")["summary"], "Practice CANCELED")
 

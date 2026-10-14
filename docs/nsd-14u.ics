@@ -254,16 +254,16 @@ BEGIN:VEVENT
 UID:20261003-note@nsd-calendar
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261003
-DTEND;VALUE=DATE:20261004
+DTEND;VALUE=DATE:20261005
 TRANSP:TRANSPARENT
 SUMMARY:EC Cup Invitational Tournament in Orange County
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Sat 3-Oct\nEC Cup Invitational Tournament in Orange County\ncos
- t is $120 per athlete\, 2 games each day\, 4 games total\nWe hope to take 
- all of our teams\, based on player availability\n\nSpreadsheet: https://do
- cs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/
- edit?gid=0
+DESCRIPTION:Sat 3-Oct - Sun 4-Oct\nEC Cup Invitational Tournament in Orange
+  County\ncost is $120 per athlete\, 2 games each day\, 4 games total\nWe h
+ ope to take all of our teams\, based on player availability\n\nSpreadsheet
+ : https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HI
+ sP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -542,16 +542,16 @@ BEGIN:VEVENT
 UID:20261107-note@nsd-calendar
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261107
-DTEND;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
 TRANSP:TRANSPARENT
 SUMMARY:Fall SPA Championships Tournament in Orange County
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Sat 7-Nov\nFall SPA Championships Tournament in Orange County\n
- cost is $120 per athlete\, 2 games each day\, 4 games total\nWe hope to ta
- ke all of our teams\, based on player availability\n\nSpreadsheet: https:/
- /docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCv
- yk/edit?gid=0
+DESCRIPTION:Sat 7-Nov - Sun 8-Nov\nFall SPA Championships Tournament in Ora
+ nge County\ncost is $120 per athlete\, 2 games each day\, 4 games total\nW
+ e hope to take all of our teams\, based on player availability\n\nSpreadsh
+ eet: https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp
+ 7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
