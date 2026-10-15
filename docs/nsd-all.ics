@@ -1353,4 +1353,17 @@ DESCRIPTION:Sat 14-Nov\nScrimmages at TBA\nmore info TBA (Fall Finale)\nWe
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
+BEGIN:VEVENT
+UID:20270115-feedtest@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270116
+TRANSP:TRANSPARENT
+SUMMARY:FEED TEST v1 (ignore)
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Temporary test of Google's feed refresh.
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
 END:VCALENDAR

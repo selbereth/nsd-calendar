@@ -194,6 +194,15 @@ def esc(text):
             .replace("\r", "").replace("\n", "\\n"))
 
 
+# Temporary: lets us see when Google picks up a new feed version. Change the
+# summary's version number to test a refresh, delete this when done.
+TEST_EVENT = {
+    "uid": "20270115-feedtest@nsd-calendar", "team": None, "location": "",
+    "all_day": date(2027, 1, 15), "all_day_end": date(2027, 1, 16),
+    "summary": "FEED TEST v1 (ignore)", "description": "Temporary test of Google's feed refresh.",
+}
+
+
 def fold(line):
     """Fold to 75 octets per RFC 5545, without splitting a UTF-8 character."""
     raw = line.encode("utf-8")
@@ -264,6 +273,8 @@ def main():
 
     for fname, (team, name) in feeds.items():
         subset = [e for e in events if team is None or e["team"] in (team, None)]
+        if team is None:
+            subset.append(TEST_EVENT)
         (out / fname).write_bytes(to_ics(subset, name).encode("utf-8"))
     print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes -> {out}/")
 
