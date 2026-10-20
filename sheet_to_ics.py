@@ -198,8 +198,8 @@ def esc(text):
 # summary's version number to test a refresh, delete this when done.
 TEST_EVENT = {
     "uid": "20270115-feedtest@nsd-calendar", "team": None, "location": "",
-    "all_day": date(2027, 1, 15), "all_day_end": date(2027, 1, 16),
-    "summary": "FEED TEST v1 (ignore)", "description": "Temporary test of Google's feed refresh.",
+    "start": datetime(2027, 1, 15, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 15, 11, 0, tzinfo=TZ),
+    "summary": "FEED TEST v2 (ignore)", "description": "Temporary test of Google's feed refresh.",
 }
 
 
