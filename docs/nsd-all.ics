@@ -1354,14 +1354,52 @@ URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
-UID:20270115-feedtest@nsd-calendar
+UID:20270112-feedtest-a@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20270115T180000Z
-DTEND:20270115T190000Z
-SUMMARY:FEED TEST v2 (ignore)
+DTSTART:20270112T180000Z
+DTEND:20270112T190000Z
+SUMMARY:FEED TEST v3 A plain (ignore)
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 DESCRIPTION:Temporary test of Google's feed refresh.
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20270113-feedtest-b@nsd-calendar
+DTSTAMP:20260101T000000Z
+SEQUENCE:0
+DTSTART:20270113T180000Z
+DTEND:20270113T190000Z
+SUMMARY:FEED TEST v3 B seq (ignore)
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Temporary test of Google's feed refresh.
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20270114-feedtest-c@nsd-calendar
+DTSTAMP:20261023T000000Z
+DTSTART;VALUE=DATE:20270114
+DTEND;VALUE=DATE:20270115
+TRANSP:TRANSPARENT
+SUMMARY:FEED TEST v3 C stamp (ignore)
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Temporary test of Google's feed refresh.
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20270116-feedtest-d@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20270116
+DTEND;VALUE=DATE:20270118
+TRANSP:TRANSPARENT
+SUMMARY:FEED TEST v3 D 2-day (ignore)
+LOCATION:33.2046006\,-117.2373799
+DESCRIPTION:VMMS\n\nTemporary test of Google's feed refresh.
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT

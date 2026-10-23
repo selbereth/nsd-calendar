@@ -194,13 +194,22 @@ def esc(text):
             .replace("\r", "").replace("\n", "\\n"))
 
 
-# Temporary: lets us see when Google picks up a new feed version. Change the
-# summary's version number to test a refresh, delete this when done.
-TEST_EVENT = {
-    "uid": "20270115-feedtest@nsd-calendar", "team": None, "location": "",
-    "start": datetime(2027, 1, 15, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 15, 11, 0, tzinfo=TZ),
-    "summary": "FEED TEST v2 (ignore)", "description": "Temporary test of Google's feed refresh.",
-}
+# Temporary: lets us see whether and how Google picks up feed changes. Each event
+# uses different properties so a later round can change each one a different way
+# (content only / SEQUENCE bump / DTSTAMP bump). Delete these when done.
+_TEST = {"team": None, "location": "", "description": "Temporary test of Google's feed refresh."}
+TEST_EVENTS = [
+    {**_TEST, "uid": "20270112-feedtest-a@nsd-calendar", "summary": "FEED TEST v3 A plain (ignore)",
+     "start": datetime(2027, 1, 12, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 12, 11, 0, tzinfo=TZ)},
+    {**_TEST, "uid": "20270113-feedtest-b@nsd-calendar", "summary": "FEED TEST v3 B seq (ignore)",
+     "start": datetime(2027, 1, 13, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 13, 11, 0, tzinfo=TZ),
+     "sequence": 0},
+    {**_TEST, "uid": "20270114-feedtest-c@nsd-calendar", "summary": "FEED TEST v3 C stamp (ignore)",
+     "all_day": date(2027, 1, 14), "all_day_end": date(2027, 1, 15), "dtstamp": "20261023T000000Z"},
+    {**_TEST, "uid": "20270116-feedtest-d@nsd-calendar", "summary": "FEED TEST v3 D 2-day (ignore)",
+     "all_day": date(2027, 1, 16), "all_day_end": date(2027, 1, 18),
+     "location": COORDS["VMMS"], "description": "VMMS\n\nTemporary test of Google's feed refresh."},
+]
 
 
 def fold(line):
@@ -231,7 +240,9 @@ def to_ics(events, name):
     ]
     for e in events:
         loc = e["location"] or f"Check the spreadsheet: {SHEET_URL}"
-        lines += ["BEGIN:VEVENT", f"UID:{e['uid']}", "DTSTAMP:20260101T000000Z"]
+        lines += ["BEGIN:VEVENT", f"UID:{e['uid']}", f"DTSTAMP:{e.get('dtstamp', '20260101T000000Z')}"]
+        if "sequence" in e:
+            lines.append(f"SEQUENCE:{e['sequence']}")
         if "all_day" in e:
             d = e["all_day"]
             lines += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{e['all_day_end']:%Y%m%d}",
@@ -274,7 +285,7 @@ def main():
     for fname, (team, name) in feeds.items():
         subset = [e for e in events if team is None or e["team"] in (team, None)]
         if team is None:
-            subset.append(TEST_EVENT)
+            subset += TEST_EVENTS
         (out / fname).write_bytes(to_ics(subset, name).encode("utf-8"))
     print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes -> {out}/")
 
