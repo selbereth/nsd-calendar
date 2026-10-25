@@ -1361,45 +1361,50 @@ DTEND:20270112T190000Z
 SUMMARY:FEED TEST v3 A plain (ignore)
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Temporary test of Google's feed refresh.
+DESCRIPTION:A: content change only.\nUPDATED v4 description. Temporary test
+  of Google's feed refresh.
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20270113-feedtest-b@nsd-calendar
 DTSTAMP:20260101T000000Z
-SEQUENCE:0
+SEQUENCE:1
 DTSTART:20270113T180000Z
 DTEND:20270113T190000Z
 SUMMARY:FEED TEST v3 B seq (ignore)
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Temporary test of Google's feed refresh.
+DESCRIPTION:B: SEQUENCE bumped 0 -> 1.\nUPDATED v4 description. Temporary t
+ est of Google's feed refresh.
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20270114-feedtest-c@nsd-calendar
-DTSTAMP:20261023T000000Z
+DTSTAMP:20261025T000000Z
 DTSTART;VALUE=DATE:20270114
 DTEND;VALUE=DATE:20270115
 TRANSP:TRANSPARENT
 SUMMARY:FEED TEST v3 C stamp (ignore)
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Temporary test of Google's feed refresh.
+DESCRIPTION:C: DTSTAMP bumped 20261023 -> 20261025.\nUPDATED v4 description
+ . Temporary test of Google's feed refresh.
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20270116-feedtest-d@nsd-calendar
-DTSTAMP:20260101T000000Z
+DTSTAMP:20261025T000000Z
+SEQUENCE:1
 DTSTART;VALUE=DATE:20270116
 DTEND;VALUE=DATE:20270118
 TRANSP:TRANSPARENT
 SUMMARY:FEED TEST v3 D 2-day (ignore)
 LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nTemporary test of Google's feed refresh.
+DESCRIPTION:VMMS\n\nD: SEQUENCE added (1) and DTSTAMP bumped.\nUPDATED v4 d
+ escription. Temporary test of Google's feed refresh.
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
