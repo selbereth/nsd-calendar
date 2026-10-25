@@ -1434,4 +1434,17 @@ DESCRIPTION:VMMS\n\nD: SEQUENCE added (1) and DTSTAMP bumped.\nUPDATED v4 d
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
+BEGIN:VEVENT
+UID:20270115-feedtest@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART:20270115T190000Z
+DTEND:20270115T200000Z
+SUMMARY:FEED TEST E re-added (ignore)
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:E: v2 event deleted\, then re-added with the same UID\, 11am-12
+ pm (was 10-11am).
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
 END:VCALENDAR

@@ -213,6 +213,11 @@ TEST_EVENTS = [
      "all_day": date(2027, 1, 16), "all_day_end": date(2027, 1, 18),
      "location": COORDS["VMMS"], "sequence": 1, "dtstamp": "20261025T000000Z",
      "description": f"VMMS\n\nD: SEQUENCE added (1) and DTSTAMP bumped.\n{V4}"},
+    # E: same UID as the v2 event (10-11am), which Google already deleted. Re-added
+    # an hour later with a new description, no SEQUENCE/DTSTAMP change.
+    {**_TEST, "uid": "20270115-feedtest@nsd-calendar", "summary": "FEED TEST E re-added (ignore)",
+     "start": datetime(2027, 1, 15, 11, 0, tzinfo=TZ), "end": datetime(2027, 1, 15, 12, 0, tzinfo=TZ),
+     "description": "E: v2 event deleted, then re-added with the same UID, 11am-12pm (was 10-11am)."},
 ]
 
 
