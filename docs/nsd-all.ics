@@ -960,10 +960,10 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261027T010000Z
 DTEND:20261027T020000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 26-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nMon 26-Oct\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:0
+ 0-7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -973,10 +973,10 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261027T010000Z
 DTEND:20261027T023000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 26-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nMon 26-Oct\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:0
+ 0-7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -986,49 +986,36 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261027T020000Z
 DTEND:20261027T033000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 26-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
- IsP-isMSCvyk/edit?gid=0
-END:VEVENT
-BEGIN:VEVENT
-UID:20261027-14u@nsd-calendar
-DTSTAMP:20260101T000000Z
-DTSTART:20261028T013000Z
-DTEND:20261028T030000Z
-SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nTue 27-Oct\nAt VMMS\n10u TUE OFF\n12u Tue OFF\n14u 6:30
- -8:00pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2TA4lobn
- udPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nMon 26-Oct\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:0
+ 0-7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261028-10u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261029T010000Z
-DTEND:20261029T020000Z
+DTSTART:20261029T020000Z
+DTEND:20261029T030000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nWed 28-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nWed 28-Oct\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:0
+ 0-8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261028-12u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261029T010000Z
-DTEND:20261029T023000Z
+DTSTART:20261029T020000Z
+DTEND:20261029T033000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nWed 28-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nWed 28-Oct\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:0
+ 0-8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1038,36 +1025,36 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261029T020000Z
 DTEND:20261029T033000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nWed 28-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nWed 28-Oct\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:0
+ 0-8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261029-10u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261030T010000Z
-DTEND:20261030T020000Z
+DTSTART:20261030T020000Z
+DTEND:20261030T030000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 29-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nThu 29-Oct\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:0
+ 0-8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261029-12u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261030T010000Z
-DTEND:20261030T023000Z
+DTSTART:20261030T020000Z
+DTEND:20261030T033000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 29-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nThu 29-Oct\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:0
+ 0-8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1077,36 +1064,36 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261030T020000Z
 DTEND:20261030T033000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 29-Oct\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nThu 29-Oct\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:0
+ 0-8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsh
+ eets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261102-10u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261103T020000Z
-DTEND:20261103T030000Z
+DTSTART:20261103T030000Z
+DTEND:20261103T040000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 2-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nMon 2-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
+ -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261102-12u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261103T020000Z
-DTEND:20261103T033000Z
+DTSTART:20261103T030000Z
+DTEND:20261103T043000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 2-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nMon 2-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
+ -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1116,88 +1103,75 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261103T030000Z
 DTEND:20261103T043000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 2-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nMon 2-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
+ -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20261103-10u@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART:20261104T020000Z
+DTEND:20261104T030000Z
+SUMMARY:10u Water Polo
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nTue 3-Nov\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:00
+ -7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20261103-12u@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART:20261104T020000Z
+DTEND:20261104T033000Z
+SUMMARY:12u Water Polo
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nTue 3-Nov\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:00
+ -7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261103-14u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261104T023000Z
-DTEND:20261104T040000Z
+DTSTART:20261104T030000Z
+DTEND:20261104T043000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nTue 3-Nov\nAt VMMS\n10u TUE OFF\n12u Tue OFF\n14u 6:30-
- 8:00pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2TA4lobnu
- dPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
- IsP-isMSCvyk/edit?gid=0
-END:VEVENT
-BEGIN:VEVENT
-UID:20261104-10u@nsd-calendar
-DTSTAMP:20260101T000000Z
-DTSTART:20261105T020000Z
-DTEND:20261105T030000Z
-SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nWed 4-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
- IsP-isMSCvyk/edit?gid=0
-END:VEVENT
-BEGIN:VEVENT
-UID:20261104-12u@nsd-calendar
-DTSTAMP:20260101T000000Z
-DTSTART:20261105T020000Z
-DTEND:20261105T033000Z
-SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nWed 4-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
- IsP-isMSCvyk/edit?gid=0
-END:VEVENT
-BEGIN:VEVENT
-UID:20261104-14u@nsd-calendar
-DTSTAMP:20260101T000000Z
-DTSTART:20261105T030000Z
-DTEND:20261105T043000Z
-SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nWed 4-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nTue 3-Nov\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:00
+ -7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261105-10u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261106T020000Z
-DTEND:20261106T030000Z
+DTSTART:20261106T030000Z
+DTEND:20261106T040000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 5-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nThu 5-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
+ -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
 UID:20261105-12u@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20261106T020000Z
-DTEND:20261106T033000Z
+DTSTART:20261106T030000Z
+DTEND:20261106T043000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 5-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nThu 5-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
+ -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1207,10 +1181,10 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261106T030000Z
 DTEND:20261106T043000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 5-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:33.204396\,-117.2575485
+DESCRIPTION:Old VIDA\n\nThu 5-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
+ -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
+ ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1237,10 +1211,11 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261110T020000Z
 DTEND:20261110T030000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 9-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Mon 9-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n14
+ u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2T
+ A4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1250,10 +1225,11 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261110T020000Z
 DTEND:20261110T033000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 9-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Mon 9-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n14
+ u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2T
+ A4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1263,10 +1239,26 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261110T030000Z
 DTEND:20261110T043000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nMon 9-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
- 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Mon 9-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n14
+ u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2T
+ A4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20261109-note@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+TRANSP:TRANSPARENT
+SUMMARY:At VMMS ??????
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Mon 9-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n14
+ u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2T
+ A4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1276,10 +1268,26 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261111T023000Z
 DTEND:20261111T040000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nTue 10-Nov\nAt VMMS\n10u TUE OFF\n12u Tue OFF\n14u 6:30
- -8:00pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2TA4lobn
- udPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Tue 10-Nov\nAt VMMS ??????\n10u TUE OFF\n12u Tue OFF\n14u 6:30-
+ 8:00pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2TA4lobnu
+ dPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20261110-note@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261110
+DTEND;VALUE=DATE:20261111
+TRANSP:TRANSPARENT
+SUMMARY:At VMMS ??????
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Tue 10-Nov\nAt VMMS ??????\n10u TUE OFF\n12u Tue OFF\n14u 6:30-
+ 8:00pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2TA4lobnu
+ dPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1292,9 +1300,9 @@ TRANSP:TRANSPARENT
 SUMMARY:Veteran's Day - No School
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Wed 11-Nov\nVeteran's Day - No School\nVMMS is closed\nNo pract
- ices\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2TA4lobnudP
- F24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Wed 11-Nov\nVeteran's Day - No School\nNo practices\n\nSpreadsh
+ eet: https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp
+ 7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1304,10 +1312,11 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261113T020000Z
 DTEND:20261113T030000Z
 SUMMARY:10u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 12-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Thu 12-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
+ 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1317,10 +1326,11 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261113T020000Z
 DTEND:20261113T033000Z
 SUMMARY:12u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 12-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Thu 12-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
+ 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -1330,10 +1340,26 @@ DTSTAMP:20260101T000000Z
 DTSTART:20261113T030000Z
 DTEND:20261113T043000Z
 SUMMARY:14u Water Polo
-LOCATION:33.2046006\,-117.2373799
-DESCRIPTION:VMMS\n\nThu 12-Nov\nAt VMMS\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n
- 14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m
- 2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Thu 12-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
+ 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
+ IsP-isMSCvyk/edit?gid=0
+END:VEVENT
+BEGIN:VEVENT
+UID:20261112-note@nsd-calendar
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+TRANSP:TRANSPARENT
+SUMMARY:At VMMS ??????
+LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
+DESCRIPTION:Thu 12-Nov\nAt VMMS ??????\n10u 6:00-7:00pm\n12u 6:00-7:30pm\n1
+ 4u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/16m2
+ TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
