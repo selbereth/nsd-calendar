@@ -1,4 +1,5 @@
 import sys
+import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
@@ -82,6 +83,24 @@ class Ics(unittest.TestCase):
         uids = [ln for ln in text.split("\r\n") if ln.startswith("UID:")]
         self.assertEqual(len(uids), len(set(uids)))
         self.assertIn("Check the spreadsheet", text)
+
+    def test_changed_event_gets_new_stamp_and_sequence(self):
+        events = s.build_events(s.parse_grid(FIXTURE))
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "x.ics"
+            path.write_bytes(s.to_ics(events, "x", now="20260101T000000Z").encode("utf-8"))
+            again = s.to_ics(events, "x", s.read_stamps(path), now="20270101T000000Z")
+            self.assertEqual(again, path.read_bytes().decode("utf-8"))  # unchanged: no churn
+
+            uid = events[0]["uid"]
+            events[0] = {**events[0], "description": "changed"}
+            path.write_bytes(again.encode("utf-8"))
+            stamps = s.read_stamps(path)
+            path.write_bytes(s.to_ics(events, "x", stamps, now="20270101T000000Z").encode("utf-8"))
+            new = s.read_stamps(path)
+            self.assertEqual(new[uid][:2], ("20270101T000000Z", 1))
+            other = events[1]["uid"]
+            self.assertEqual(new[other][:2], ("20260101T000000Z", 0))
 
 
 if __name__ == "__main__":

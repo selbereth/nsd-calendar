@@ -194,9 +194,8 @@ def esc(text):
             .replace("\r", "").replace("\n", "\\n"))
 
 
-# Temporary: lets us see whether and how Google picks up feed changes. Each event
-# uses different properties so a later round can change each one a different way
-# (content only / SEQUENCE bump / DTSTAMP bump). Delete these when done.
+# Temporary: lets us see whether and how Google picks up feed changes (DTSTAMP and
+# SEQUENCE are now automatic, see to_ics). Delete these when done.
 _TEST = {"team": None, "location": ""}
 V4 = "UPDATED v4 description. Temporary test of Google's feed refresh."
 TEST_EVENTS = [
@@ -205,13 +204,13 @@ TEST_EVENTS = [
      "description": f"A: content change only.\n{V4}"},
     {**_TEST, "uid": "20270113-feedtest-b@nsd-calendar", "summary": "FEED TEST v3 B seq (ignore)",
      "start": datetime(2027, 1, 13, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 13, 11, 0, tzinfo=TZ),
-     "sequence": 1, "description": f"B: SEQUENCE bumped 0 -> 1.\n{V4}"},
+     "description": f"B: SEQUENCE bumped 0 -> 1.\n{V4}"},
     {**_TEST, "uid": "20270114-feedtest-c@nsd-calendar", "summary": "FEED TEST v3 C stamp (ignore)",
-     "all_day": date(2027, 1, 14), "all_day_end": date(2027, 1, 15), "dtstamp": "20261025T000000Z",
+     "all_day": date(2027, 1, 14), "all_day_end": date(2027, 1, 15),
      "description": f"C: DTSTAMP bumped 20261023 -> 20261025.\n{V4}"},
     {**_TEST, "uid": "20270116-feedtest-d@nsd-calendar", "summary": "FEED TEST v3 D 2-day (ignore)",
      "all_day": date(2027, 1, 16), "all_day_end": date(2027, 1, 18),
-     "location": COORDS["VMMS"], "sequence": 1, "dtstamp": "20261025T000000Z",
+     "location": COORDS["VMMS"],
      "description": f"VMMS\n\nD: SEQUENCE added (1) and DTSTAMP bumped.\n{V4}"},
     # E: same UID as the v2 event (10-11am), which Google already deleted. Re-added
     # an hour later with a new description, no SEQUENCE/DTSTAMP change.
@@ -247,7 +246,36 @@ def utc(dt):
     return dt.astimezone(ZoneInfo("UTC")).strftime("%Y%m%dT%H%M%SZ")
 
 
-def to_ics(events, name):
+def read_stamps(path):
+    """UID -> (DTSTAMP, SEQUENCE, other lines) for each event in a previously written feed."""
+    if not path.exists():
+        return {}
+    stamps, cur = {}, None
+    for ln in path.read_bytes().decode("utf-8").replace("\r\n ", "").split("\r\n"):
+        if ln == "BEGIN:VEVENT":
+            cur = {"seq": 0, "body": []}
+        elif ln == "END:VEVENT" and cur:
+            stamps[cur["uid"]] = (cur["stamp"], cur["seq"], cur["body"])
+            cur = None
+        elif cur is not None:
+            key, _, val = ln.partition(":")
+            if key == "DTSTAMP":
+                cur["stamp"] = val
+            elif key == "SEQUENCE":
+                cur["seq"] = int(val)
+            else:
+                cur["body"].append(ln)
+                if key == "UID":
+                    cur["uid"] = val
+    return stamps
+
+
+def to_ics(events, name, previous=None, now=None):
+    """previous: read_stamps() of the last feed. Google ignores an edited event unless its
+    SEQUENCE or DTSTAMP changes, so an event whose content changed gets SEQUENCE + 1 and
+    DTSTAMP = now; an unchanged one keeps its old values so the file doesn't churn."""
+    previous = previous or {}
+    now = now or utc(datetime.now(TZ))
     lines = [
         "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nsd-calendar//EN", "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH", f"X-WR-CALNAME:{esc(name)}", "X-WR-TIMEZONE:America/Los_Angeles",
@@ -255,17 +283,20 @@ def to_ics(events, name):
     ]
     for e in events:
         loc = e["location"] or f"Check the spreadsheet: {SHEET_URL}"
-        lines += ["BEGIN:VEVENT", f"UID:{e['uid']}", f"DTSTAMP:{e.get('dtstamp', '20260101T000000Z')}"]
-        if "sequence" in e:
-            lines.append(f"SEQUENCE:{e['sequence']}")
+        body = [f"UID:{e['uid']}"]
         if "all_day" in e:
             d = e["all_day"]
-            lines += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{e['all_day_end']:%Y%m%d}",
-                      "TRANSP:TRANSPARENT"]
+            body += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{e['all_day_end']:%Y%m%d}",
+                     "TRANSP:TRANSPARENT"]
         else:
-            lines += [f"DTSTART:{utc(e['start'])}", f"DTEND:{utc(e['end'])}"]
-        lines += [f"SUMMARY:{esc(e['summary'])}", f"LOCATION:{esc(loc)}",
-                  f"DESCRIPTION:{esc(e['description'])}", f"URL:{SHEET_URL}", "END:VEVENT"]
+            body += [f"DTSTART:{utc(e['start'])}", f"DTEND:{utc(e['end'])}"]
+        body += [f"SUMMARY:{esc(e['summary'])}", f"LOCATION:{esc(loc)}",
+                 f"DESCRIPTION:{esc(e['description'])}", f"URL:{SHEET_URL}"]
+        stamp, seq = now, 0
+        if e["uid"] in previous:
+            old_stamp, old_seq, old_body = previous[e["uid"]]
+            stamp, seq = (old_stamp, old_seq) if old_body == body else (now, old_seq + 1)
+        lines += ["BEGIN:VEVENT", body[0], f"DTSTAMP:{stamp}", f"SEQUENCE:{seq}", *body[1:], "END:VEVENT"]
     lines.append("END:VCALENDAR")
     return "\r\n".join(fold(ln) for ln in lines) + "\r\n"
 
@@ -301,7 +332,7 @@ def main():
         subset = [e for e in events if team is None or e["team"] in (team, None)]
         if team is None:
             subset += TEST_EVENTS
-        (out / fname).write_bytes(to_ics(subset, name).encode("utf-8"))
+        (out / fname).write_bytes(to_ics(subset, name, read_stamps(out / fname)).encode("utf-8"))
     print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes -> {out}/")
 
 

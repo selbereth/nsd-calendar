@@ -17,6 +17,10 @@ the sheet plus a link. Location is the pool's parking-lot coordinates only (Goog
 team's line wins over the day's "At ..." line; otherwise "Check the spreadsheet: <link>".
 Non-practice text (tournaments, closures) becomes an all-day event. A Saturday note that says "each day" (or "both days") with an empty Sunday spans Saturday and Sunday: the sheet text just spills over the Sunday box, so the sheet itself doesn't say so.
 
+Edits: Google ignores a changed event unless its SEQUENCE or DTSTAMP changes, so each run
+compares every event with the feed already in `docs/` and, if its content changed, bumps
+SEQUENCE and sets DTSTAMP to now. Unchanged events keep their old values.
+
 If the sheet layout changes so it no longer parses, the job fails (GitHub emails you)
 and the last good feeds stay up. Run locally: `python3 sheet_to_ics.py --out docs`;
 tests: `python3 tests/test_sheet_to_ics.py`. Times assume America/Los_Angeles.
