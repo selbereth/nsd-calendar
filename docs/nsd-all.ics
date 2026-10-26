@@ -1448,15 +1448,15 @@ URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
-UID:20270120-feedtest-f@nsd-calendar
+UID:20270120-feedtest-f2@nsd-calendar
 DTSTAMP:20260101T000000Z
-DTSTART:20270120T180000Z
-DTEND:20270120T190000Z
-SUMMARY:FEED TEST F original (ignore)
+DTSTART:20270120T190000Z
+DTEND:20270120T200000Z
+SUMMARY:FEED TEST F2 replacement (ignore)
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:F: original event\, 10-11am. Later this will be deleted and rep
- laced by a new event with a new ID\, as if it were a whole new event.
+DESCRIPTION:F2: new event with a new ID\, 11am-12pm. Replaces F (10-11am)\,
+  which was deleted from the feed.
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT

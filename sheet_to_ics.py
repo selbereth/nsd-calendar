@@ -218,12 +218,12 @@ TEST_EVENTS = [
     {**_TEST, "uid": "20270115-feedtest@nsd-calendar", "summary": "FEED TEST E re-added (ignore)",
      "start": datetime(2027, 1, 15, 11, 0, tzinfo=TZ), "end": datetime(2027, 1, 15, 12, 0, tzinfo=TZ),
      "description": "E: v2 event deleted, then re-added with the same UID, 11am-12pm (was 10-11am)."},
-    # F: a later round deletes this one and adds a replacement with a new UID, as if
-    # it were a brand-new event.
-    {**_TEST, "uid": "20270120-feedtest-f@nsd-calendar", "summary": "FEED TEST F original (ignore)",
-     "start": datetime(2027, 1, 20, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 20, 11, 0, tzinfo=TZ),
-     "description": "F: original event, 10-11am. Later this will be deleted and replaced by a"
-                    " new event with a new ID, as if it were a whole new event."},
+    # F2: replaces F (UID 20270120-feedtest-f, 10-11am), which is now dropped from the
+    # feed. New UID, as if it were a brand-new event.
+    {**_TEST, "uid": "20270120-feedtest-f2@nsd-calendar", "summary": "FEED TEST F2 replacement (ignore)",
+     "start": datetime(2027, 1, 20, 11, 0, tzinfo=TZ), "end": datetime(2027, 1, 20, 12, 0, tzinfo=TZ),
+     "description": "F2: new event with a new ID, 11am-12pm. Replaces F (10-11am), which"
+                    " was deleted from the feed."},
 ]
 
 
