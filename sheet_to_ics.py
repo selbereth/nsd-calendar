@@ -194,38 +194,6 @@ def esc(text):
             .replace("\r", "").replace("\n", "\\n"))
 
 
-# Temporary: lets us see whether and how Google picks up feed changes (DTSTAMP and
-# SEQUENCE are now automatic, see to_ics). Delete these when done.
-_TEST = {"team": None, "location": ""}
-V4 = "UPDATED v4 description. Temporary test of Google's feed refresh."
-TEST_EVENTS = [
-    {**_TEST, "uid": "20270112-feedtest-a@nsd-calendar", "summary": "FEED TEST v3 A plain (ignore)",
-     "start": datetime(2027, 1, 12, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 12, 11, 0, tzinfo=TZ),
-     "description": f"A: content change only.\n{V4}"},
-    {**_TEST, "uid": "20270113-feedtest-b@nsd-calendar", "summary": "FEED TEST v3 B seq (ignore)",
-     "start": datetime(2027, 1, 13, 10, 0, tzinfo=TZ), "end": datetime(2027, 1, 13, 11, 0, tzinfo=TZ),
-     "description": f"B: SEQUENCE bumped 0 -> 1.\n{V4}"},
-    {**_TEST, "uid": "20270114-feedtest-c@nsd-calendar", "summary": "FEED TEST v3 C stamp (ignore)",
-     "all_day": date(2027, 1, 14), "all_day_end": date(2027, 1, 15),
-     "description": f"C: DTSTAMP bumped 20261023 -> 20261025.\n{V4}"},
-    {**_TEST, "uid": "20270116-feedtest-d@nsd-calendar", "summary": "FEED TEST v3 D 2-day (ignore)",
-     "all_day": date(2027, 1, 16), "all_day_end": date(2027, 1, 18),
-     "location": COORDS["VMMS"],
-     "description": f"VMMS\n\nD: SEQUENCE added (1) and DTSTAMP bumped.\n{V4}"},
-    # E: same UID as the v2 event (10-11am), which Google already deleted. Re-added
-    # an hour later with a new description, no SEQUENCE/DTSTAMP change.
-    {**_TEST, "uid": "20270115-feedtest@nsd-calendar", "summary": "FEED TEST E re-added (ignore)",
-     "start": datetime(2027, 1, 15, 11, 0, tzinfo=TZ), "end": datetime(2027, 1, 15, 12, 0, tzinfo=TZ),
-     "description": "E: v2 event deleted, then re-added with the same UID, 11am-12pm (was 10-11am)."},
-    # F2: replaces F (UID 20270120-feedtest-f, 10-11am), which is now dropped from the
-    # feed. New UID, as if it were a brand-new event.
-    {**_TEST, "uid": "20270120-feedtest-f2@nsd-calendar", "summary": "FEED TEST F2 replacement (ignore)",
-     "start": datetime(2027, 1, 20, 11, 0, tzinfo=TZ), "end": datetime(2027, 1, 20, 12, 0, tzinfo=TZ),
-     "description": "F2: new event with a new ID, 11am-12pm. Replaces F (10-11am), which"
-                    " was deleted from the feed."},
-]
-
-
 def fold(line):
     """Fold to 75 octets per RFC 5545, without splitting a UTF-8 character."""
     raw = line.encode("utf-8")
@@ -330,8 +298,6 @@ def main():
 
     for fname, (team, name) in feeds.items():
         subset = [e for e in events if team is None or e["team"] in (team, None)]
-        if team is None:
-            subset += TEST_EVENTS
         (out / fname).write_bytes(to_ics(subset, name, read_stamps(out / fname)).encode("utf-8"))
     print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes -> {out}/")
 
