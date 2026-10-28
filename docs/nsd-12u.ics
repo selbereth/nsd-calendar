@@ -480,14 +480,14 @@ URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
 BEGIN:VEVENT
-UID:20261103-12u@nsd-calendar
-DTSTAMP:20261027T003056Z
-SEQUENCE:1
-DTSTART:20261104T020000Z
-DTEND:20261104T033000Z
+UID:20261104-12u@nsd-calendar
+DTSTAMP:20261028T185358Z
+SEQUENCE:0
+DTSTART:20261105T020000Z
+DTEND:20261105T033000Z
 SUMMARY:12u Water Polo
 LOCATION:33.204396\,-117.2575485
-DESCRIPTION:Old VIDA\n\nTue 3-Nov\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:00
+DESCRIPTION:Old VIDA\n\nWed 4-Nov\nat "Old VIDA"\n10u 6:00-7:00pm\n12u 6:00
  -7:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
  ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
@@ -504,24 +504,6 @@ LOCATION:33.204396\,-117.2575485
 DESCRIPTION:Old VIDA\n\nThu 5-Nov\nat "Old VIDA"\n10u 7:00-8:00pm\n12u 7:00
  -8:30pm\n14u 7:00-8:30pm\n\nSpreadsheet: https://docs.google.com/spreadshe
  ets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
- IsP-isMSCvyk/edit?gid=0
-END:VEVENT
-BEGIN:VEVENT
-UID:20261107-note@nsd-calendar
-DTSTAMP:20261027T003056Z
-SEQUENCE:1
-DTSTART;VALUE=DATE:20261107
-DTEND;VALUE=DATE:20261109
-TRANSP:TRANSPARENT
-SUMMARY:Fall SPA Championships Tournament in Orange County
-LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
- TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Sat 7-Nov - Sun 8-Nov\nFall SPA Championships Tournament in Ora
- nge County\ncost is $120 per athlete\, 2 games each day\, 4 games total\nW
- e hope to take all of our teams\, based on player availability\n\nSpreadsh
- eet: https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp
- 7HIsP-isMSCvyk/edit?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
@@ -621,18 +603,20 @@ URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
 END:VEVENT
 BEGIN:VEVENT
 UID:20261114-note@nsd-calendar
-DTSTAMP:20261027T003056Z
-SEQUENCE:1
+DTSTAMP:20261028T185358Z
+SEQUENCE:2
 DTSTART;VALUE=DATE:20261114
-DTEND;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
 TRANSP:TRANSPARENT
-SUMMARY:Scrimmages at TBA
+SUMMARY:Fall SPA Championships Tournament\, Orange County
 LOCATION:Check the spreadsheet: https://docs.google.com/spreadsheets/d/16m2
  TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit?gid=0
-DESCRIPTION:Sat 14-Nov\nScrimmages at TBA\nmore info TBA (Fall Finale)\nWe 
- are off until Winter (Dec 1)\nHappy Thanksgiving!\n\nSpreadsheet: https://
- docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvy
- k/edit?gid=0
+DESCRIPTION:Sat 14-Nov - Sun 15-Nov\nFall SPA Championships Tournament\, Or
+ ange County\ncost is $120 per athlete\, 2 games each day\, 4 games total\n
+ We hope to take all of our teams\, based on player availability\nWe are of
+ f until Winter (Dec 1)\nHappy Thanksgiving!\n\nSpreadsheet: https://docs.g
+ oogle.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk/edit
+ ?gid=0
 URL:https://docs.google.com/spreadsheets/d/16m2TA4lobnudPF24B8g2P_KckVENp7H
  IsP-isMSCvyk/edit?gid=0
 END:VEVENT
