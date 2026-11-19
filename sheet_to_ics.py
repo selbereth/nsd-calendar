@@ -22,7 +22,7 @@ SHEET_ID = "16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk"
 SHEET_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit?gid=0"
 CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"
 TZ = ZoneInfo("America/Los_Angeles")
-TEAMS = ("10u", "12u", "14u")
+TEAMS = ("10u", "12u", "14u", "16u", "18u")
 CAL_NAME = "NSD Water Polo"
 
 # "30-Nov", plus typos seen in the sheet: "30- Jan", "Jan 29"
@@ -30,7 +30,9 @@ _MON = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
 DATE_RE = re.compile(rf"^(?:(\d{{1,2}})\s*-\s*{_MON}|{_MON}\s+(\d{{1,2}}))$", re.I)
 WEEKDAY_RE = re.compile(r"^(mon|tue|wed|thu|fri|sat|sun)[a-z]*$", re.I)
 TITLE_RE = re.compile(r"\bcalendar\b", re.I)
-TEAM_RE = re.compile(r"^(10u|12u|14u)\b\s*(.*)$", re.I)
+# One team or a list: "16u 6:00-7:30pm", "16u/18u 4:00-6:00pm", "16u & 18u Regional ..."
+TEAM_RE = re.compile(r"^(1[02468]u(?:\s*(?:/|&|,|and)\s*1[02468]u)*)\b\s*(.*)$", re.I)
+OFF_RE = re.compile(r"\boff\b", re.I)
 TIME_RE = re.compile(
     r"^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b\s*(.*)$", re.I
 )
@@ -187,22 +189,26 @@ def build_events(days):
         for ln in lines:
             tm = TEAM_RE.match(ln)
             if tm:
-                team, rest = tm.group(1).lower(), tm.group(2)
-                time_m = TIME_RE.match(rest)
+                time_m = TIME_RE.match(tm.group(2))
                 if not time_m:
-                    continue  # e.g. "10u Tue OFF": no event, still shown in the description
+                    # "10u Tue OFF": no event, still shown in the description.
+                    # "16u & 18u Regional Junior Olympics": an all-day note.
+                    if not OFF_RE.search(ln):
+                        notes.append(ln)
+                    continue
                 (sh, sm), (eh, em) = parse_time(time_m)
                 loc = find_location(time_m.group(7)) or day_loc
-                events.append({
-                    "uid": f"{d:%Y%m%d}-{team}@nsd-calendar",
-                    "team": team,
-                    "summary": f"{team} Water Polo",
-                    "start": datetime(d.year, d.month, d.day, sh, sm, tzinfo=TZ),
-                    "end": datetime(d.year, d.month, d.day, eh, em, tzinfo=TZ),
-                    "place": loc,
-                    "location": COORDS.get(loc),
-                    "description": describe(loc),
-                })
+                for team in re.findall(r"1[02468]u", tm.group(1).lower()):
+                    events.append({
+                        "uid": f"{d:%Y%m%d}-{team}@nsd-calendar",
+                        "team": team,
+                        "summary": f"{team} Water Polo",
+                        "start": datetime(d.year, d.month, d.day, sh, sm, tzinfo=TZ),
+                        "end": datetime(d.year, d.month, d.day, eh, em, tzinfo=TZ),
+                        "place": loc,
+                        "location": COORDS.get(loc),
+                        "description": describe(loc),
+                    })
             elif not is_location_only(ln):
                 notes.append(ln)
         if notes:

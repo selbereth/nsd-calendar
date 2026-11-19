@@ -93,6 +93,20 @@ class Parse(unittest.TestCase):
         self.assertEqual(days[0]["lines"], ["Note"])
         self.assertTrue(all(not d["lines"] for d in days[1:]))
 
+    def test_16u_18u_and_team_lists(self):
+        csv_text = ("Cal 2027\n31-May,1-Jun,2-Jun,3-Jun,4-Jun,5-Jun,6-Jun\n"
+                    "10u/12u/14u are OFF this week,16u 6:00-7:30pm at VMMS,,,,,16u & 18u Regional Junior\n"
+                    "16u/18u 4:00-6:00pm at Wave,18u 7:30-9:00pm at VMMS,,,,,\n")
+        events = s.build_events(s.parse_grid(csv_text))
+        by_uid = {e["uid"]: e for e in events}
+        for team in ("16u", "18u"):
+            e = by_uid[f"20270531-{team}@nsd-calendar"]
+            self.assertEqual((e["team"], e["start"].hour, e["end"].hour), (team, 16, 18))
+        self.assertEqual(by_uid["20270601-16u@nsd-calendar"]["start"].hour, 18)
+        self.assertEqual(by_uid["20270601-18u@nsd-calendar"]["start"].hour, 19)
+        self.assertNotIn("20270531-note@nsd-calendar", by_uid)  # "are OFF": no note
+        self.assertEqual(by_uid["20270606-note@nsd-calendar"]["summary"], "16u & 18u Regional Junior")
+
     def test_time_edge_cases(self):
         m = s.TIME_RE.match("11:30-1:00pm")
         self.assertEqual(s.parse_time(m), ((11, 30), (13, 0)))
