@@ -18,7 +18,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-SHEET_ID = "16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk"
+SHEET_ID = "1GuipSrA5YecQpop4lqkkVYEVdJee-1ZDyq6qvewhLl0"
 SHEET_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit?gid=0"
 CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"
 TZ = ZoneInfo("America/Los_Angeles")
