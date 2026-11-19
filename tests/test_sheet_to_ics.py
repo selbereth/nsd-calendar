@@ -64,6 +64,35 @@ class Parse(unittest.TestCase):
         self.assertEqual(days[0]["date"], date(2026, 12, 28))
         self.assertEqual(days[-1]["date"], date(2027, 1, 3))
 
+    def test_two_digit_season_year(self):
+        csv_text = "WINTER CALENDAR 26/27,,,,,,11/17/2026 Version\n30-Nov,1-Dec,2-Dec,3-Dec,4-Dec,5-Dec,6-Dec\n"
+        days = s.parse_grid(csv_text, today=date(2027, 1, 15))
+        self.assertEqual(days[0]["date"], date(2026, 11, 30))
+
+    def test_short_last_week(self):
+        csv_text = ("Cal 2027\n12-Jul,13-Jul,14-Jul,15-Jul,16-Jul,17-Jul,18-Jul\n"
+                    "19-Jul,20-Jul,,,,,\nA,B,C,,,,\n")
+        days = s.parse_grid(csv_text)
+        self.assertEqual([d["date"] for d in days[-2:]], [date(2027, 7, 19), date(2027, 7, 20)])
+        self.assertEqual(days[-2]["lines"], ["A"])
+        self.assertEqual(days[-8]["lines"], [])  # 18-Jul: the dates are not text
+
+    def test_date_cell_typos(self):
+        csv_text = ("Cal 2027\n18-Jan,19-Jan,20-Jan,21-Jan,22-Jan,23-Jan,24-Jan\nA,,,,,,\n"
+                    "25-Jan,26-Jan,27-Jan,28-Jan,Jan 29,30- Jan,31-Jan\nB,,,,,,\n")
+        days = s.parse_grid(csv_text)
+        self.assertEqual([d["date"] for d in days[7:]],
+                         [date(2027, 1, n) for n in range(25, 32)])
+        self.assertEqual((days[0]["lines"], days[7]["lines"]), (["A"], ["B"]))
+
+    def test_header_and_title_rows_are_skipped(self):
+        csv_text = ("Cal 2027\n22-Feb,23-Feb,24-Feb,25-Feb,26-Feb,27-Feb,28-Feb\n"
+                    "Note,,,,,,\nNSD Stars Spring Calendar 2027 (more info soon),,,,,,\n"
+                    "Mon,Tue,Wed,Thur,Fri,Sat,Sun\nMONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY\n")
+        days = s.parse_grid(csv_text)
+        self.assertEqual(days[0]["lines"], ["Note"])
+        self.assertTrue(all(not d["lines"] for d in days[1:]))
+
     def test_time_edge_cases(self):
         m = s.TIME_RE.match("11:30-1:00pm")
         self.assertEqual(s.parse_time(m), ((11, 30), (13, 0)))

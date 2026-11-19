@@ -25,7 +25,11 @@ TZ = ZoneInfo("America/Los_Angeles")
 TEAMS = ("10u", "12u", "14u")
 CAL_NAME = "NSD Water Polo"
 
-DATE_RE = re.compile(r"^\d{1,2}-[A-Za-z]{3}$")
+# "30-Nov", plus typos seen in the sheet: "30- Jan", "Jan 29"
+_MON = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
+DATE_RE = re.compile(rf"^(?:(\d{{1,2}})\s*-\s*{_MON}|{_MON}\s+(\d{{1,2}}))$", re.I)
+WEEKDAY_RE = re.compile(r"^(mon|tue|wed|thu|fri|sat|sun)[a-z]*$", re.I)
+TITLE_RE = re.compile(r"\bcalendar\b", re.I)
 TEAM_RE = re.compile(r"^(10u|12u|14u)\b\s*(.*)$", re.I)
 TIME_RE = re.compile(
     r"^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b\s*(.*)$", re.I
@@ -93,13 +97,40 @@ def parse_time(m):
     return start, end
 
 
+def title_year(title):
+    """Start year from a title like "Fall Calendar 2026" or "WINTER CALENDAR 26/27"."""
+    m = re.search(r"\b(20\d\d)\b", title)
+    if m:
+        return int(m.group(1))
+    for a, b in re.findall(r"\b(\d\d)\s*/\s*(\d\d)\b", title):
+        if int(b) == int(a) + 1:
+            return 2000 + int(a)
+    return None
+
+
+def is_date_row(cells):
+    """All dates, left to right. The last week can be short: 19-Jul,20-Jul,,,,,"""
+    filled = [c for c in cells if c]
+    return bool(filled) and cells[:len(filled)] == filled and all(DATE_RE.match(c) for c in filled)
+
+
+def is_header_row(cells):
+    """A repeated weekday header (Mon,Tue,... or MONDAY,...) or a section title alone in
+    the first column (NSD Stars Spring Calendar 2027). Not schedule text."""
+    filled = [c for c in cells if c]
+    if not filled:
+        return False
+    if all(WEEKDAY_RE.match(c) for c in filled):
+        return True
+    return len(filled) == 1 and cells[0] and TITLE_RE.search(cells[0]) is not None
+
+
 def parse_grid(csv_text, today=None):
     """Return list of days: {date, lines}, in sheet order. lines = the day's cell text."""
     rows = list(csv.reader(io.StringIO(csv_text)))
     if not rows:
         raise ValueError("sheet is empty")
-    title_year = re.search(r"\b(20\d\d)\b", rows[0][0] if rows[0] else "")
-    year = int(title_year.group(1)) if title_year else (today or date.today()).year
+    year = title_year(rows[0][0] if rows[0] else "") or (today or date.today()).year
 
     days, week_dates, week_cells, prev_month = [], None, None, None
 
@@ -112,19 +143,23 @@ def parse_grid(csv_text, today=None):
     for row in rows[1:]:
         row = (row + [""] * 7)[:7]
         cells = [c.strip() for c in row]
-        if all(DATE_RE.match(c) for c in cells):
+        if is_header_row(cells):
+            continue
+        if is_date_row(cells):
             flush()
             week_dates = []
-            for c in cells:
-                dt = datetime.strptime(f"{c}-{year}", "%d-%b-%Y").date()
+            for c in filter(None, cells):
+                m = DATE_RE.match(c)
+                day, mon = m.group(1) or m.group(4), m.group(2) or m.group(3)
+                dt = datetime.strptime(f"{day}-{mon}-{year}", "%d-%b-%Y").date()
                 if prev_month is not None and dt.month < prev_month - 6:
                     year += 1
                     dt = dt.replace(year=year)
                 prev_month = dt.month
                 week_dates.append(dt)
-            week_cells = [[] for _ in range(7)]
+            week_cells = [[] for _ in week_dates]
         elif week_dates:
-            for i, c in enumerate(cells):
+            for i, c in enumerate(cells[:len(week_dates)]):
                 if c:
                     week_cells[i].append(c)
     flush()
