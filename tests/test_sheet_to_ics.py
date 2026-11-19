@@ -120,6 +120,17 @@ class Parse(unittest.TestCase):
         self.assertEqual(note["location"], s.COORDS["Servite HS"])
         self.assertTrue(note["description"].startswith("Servite HS\n\n"))
 
+    def test_practice_title_has_short_place(self):
+        self.assertEqual(self.one("20261012-12u@nsd-calendar")["summary"], "12u Water Polo VIDA")
+        self.assertEqual(self.one("20260914-10u@nsd-calendar")["summary"], "10u Water Polo Wave")
+        self.assertEqual(self.one("20260908-10u@nsd-calendar")["summary"], "10u Water Polo VMMS")
+        csv_text = "Cal 2026\n7-Dec,8-Dec,9-Dec,10-Dec,11-Dec,12-Dec,13-Dec\n16u 6:00-7:30pm,18u 6:15-8:00pm at WAC,,,,,\n"
+        by_uid = {e["uid"]: e for e in s.build_events(s.parse_grid(csv_text))}
+        self.assertEqual(by_uid["20261207-16u@nsd-calendar"]["summary"], "16u Water Polo")  # no place
+        self.assertEqual(by_uid["20261208-18u@nsd-calendar"]["summary"], "18u Water Polo WAC")
+        self.assertEqual(set(s.SHORT), set(s.COORDS))
+        self.assertTrue(all(len(v) <= 4 for v in s.SHORT.values()))
+
     def test_time_edge_cases(self):
         m = s.TIME_RE.match("11:30-1:00pm")
         self.assertEqual(s.parse_time(m), ((11, 30), (13, 0)))

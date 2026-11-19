@@ -15,6 +15,8 @@ Google refreshes subscribed calendars every several hours to a day.
 Rules: one event per team per day; the description holds that whole day's text from
 the sheet plus a link. Location is the pool's parking-lot coordinates only (Google resolves names and street addresses to the wrong lot); the place name (VMMS, The Wave, Old VIDA, WAC, Servite HS) is the first line of the description, then a blank line, then the day's text. A place on the
 team's line wins over the day's "At ..." line; otherwise "Check the spreadsheet: <link>".
+A practice title ends with the pool's short name: "12u Water Polo VMMS" (VMMS, Wave, VIDA,
+WAC, Serv). With no known pool, the title is just "12u Water Polo".
 A line for several teams ("16u/18u 4:00-6:00pm") gives each team an event. Non-practice text (tournaments, closures) becomes an all-day event, and so does a team line with no time unless it says OFF. A Saturday note that says "each day" (or "both days") with an empty Sunday spans Saturday and Sunday: the sheet text just spills over the Sunday box, so the sheet itself doesn't say so.
 
 Edits: Google ignores a changed event unless its SEQUENCE or DTSTAMP changes, so each run

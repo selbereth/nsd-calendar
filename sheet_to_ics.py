@@ -53,6 +53,8 @@ COORDS = {
     "WAC": "33.2055438,-117.3175868",
     "Servite HS": "33.8457608,-117.9494694",
 }
+# Short name (4 letters at most) at the end of a practice title: "12u Water Polo VMMS".
+SHORT = {"Old VIDA": "VIDA", "VMMS": "VMMS", "The Wave": "Wave", "WAC": "WAC", "Servite HS": "Serv"}
 # A Saturday note like "2 games each day" spans Sunday too; the sheet text just spills
 # over the empty Sunday box, so nothing in the CSV says so.
 TWO_DAY_RE = re.compile(r"each day|both days|saturday\s*(and|&|-)\s*sunday|sat\s*[-&/]\s*sun", re.I)
@@ -206,7 +208,7 @@ def build_events(days):
                     events.append({
                         "uid": f"{d:%Y%m%d}-{team}@nsd-calendar",
                         "team": team,
-                        "summary": f"{team} Water Polo",
+                        "summary": f"{team} Water Polo {SHORT[loc]}" if loc else f"{team} Water Polo",
                         "start": datetime(d.year, d.month, d.day, sh, sm, tzinfo=TZ),
                         "end": datetime(d.year, d.month, d.day, eh, em, tzinfo=TZ),
                         "place": loc,
