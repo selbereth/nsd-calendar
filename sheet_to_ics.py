@@ -18,15 +18,21 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-SHEET_ID = "16m2TA4lobnudPF24B8g2P_KckVENp7HIsP-isMSCvyk"
+SHEET_ID = "1GuipSrA5YecQpop4lqkkVYEVdJee-1ZDyq6qvewhLl0"
 SHEET_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit?gid=0"
 CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=0"
 TZ = ZoneInfo("America/Los_Angeles")
-TEAMS = ("10u", "12u", "14u")
+TEAMS = ("10u", "12u", "14u", "16u", "18u")
 CAL_NAME = "NSD Water Polo"
 
-DATE_RE = re.compile(r"^\d{1,2}-[A-Za-z]{3}$")
-TEAM_RE = re.compile(r"^(10u|12u|14u)\b\s*(.*)$", re.I)
+# "30-Nov", plus typos seen in the sheet: "30- Jan", "Jan 29"
+_MON = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
+DATE_RE = re.compile(rf"^(?:(\d{{1,2}})\s*-\s*{_MON}|{_MON}\s+(\d{{1,2}}))$", re.I)
+WEEKDAY_RE = re.compile(r"^(mon|tue|wed|thu|fri|sat|sun)[a-z]*$", re.I)
+TITLE_RE = re.compile(r"\bcalendar\b", re.I)
+# One team or a list: "16u 6:00-7:30pm", "16u/18u 4:00-6:00pm", "16u & 18u Regional ..."
+TEAM_RE = re.compile(r"^(1[02468]u(?:\s*(?:/|&|,|and)\s*1[02468]u)*)\b\s*(.*)$", re.I)
+OFF_RE = re.compile(r"\boff\b", re.I)
 TIME_RE = re.compile(
     r"^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b\s*(.*)$", re.I
 )
@@ -35,6 +41,8 @@ LOCATIONS = [
     (re.compile(r"old\s+vida", re.I), "Old VIDA"),
     (re.compile(r"\bvmms\b", re.I), "VMMS"),
     (re.compile(r"\bwave\b", re.I), "The Wave"),
+    (re.compile(r"\bwac\b(\s+oside)?", re.I), "WAC"),  # "WAC" and "WAC Oside": one pool
+    (re.compile(r"\bservite\b(\s+hs)?(\s*,\s*anaheim)?", re.I), "Servite HS"),
 ]
 # Parking-lot coordinates used as the LOCATION. No venue name: Google resolves names
 # and street addresses to the wrong lot. The name goes at the top of the description.
@@ -42,6 +50,8 @@ COORDS = {
     "Old VIDA": "33.204396,-117.2575485",
     "VMMS": "33.2046006,-117.2373799",
     "The Wave": "33.199571,-117.245795",
+    "WAC": "33.2055438,-117.3175868",
+    "Servite HS": "33.8457608,-117.9494694",
 }
 # A Saturday note like "2 games each day" spans Sunday too; the sheet text just spills
 # over the empty Sunday box, so nothing in the CSV says so.
@@ -93,13 +103,40 @@ def parse_time(m):
     return start, end
 
 
+def title_year(title):
+    """Start year from a title like "Fall Calendar 2026" or "WINTER CALENDAR 26/27"."""
+    m = re.search(r"\b(20\d\d)\b", title)
+    if m:
+        return int(m.group(1))
+    for a, b in re.findall(r"\b(\d\d)\s*/\s*(\d\d)\b", title):
+        if int(b) == int(a) + 1:
+            return 2000 + int(a)
+    return None
+
+
+def is_date_row(cells):
+    """All dates, left to right. The last week can be short: 19-Jul,20-Jul,,,,,"""
+    filled = [c for c in cells if c]
+    return bool(filled) and cells[:len(filled)] == filled and all(DATE_RE.match(c) for c in filled)
+
+
+def is_header_row(cells):
+    """A repeated weekday header (Mon,Tue,... or MONDAY,...) or a section title alone in
+    the first column (NSD Stars Spring Calendar 2027). Not schedule text."""
+    filled = [c for c in cells if c]
+    if not filled:
+        return False
+    if all(WEEKDAY_RE.match(c) for c in filled):
+        return True
+    return len(filled) == 1 and cells[0] and TITLE_RE.search(cells[0]) is not None
+
+
 def parse_grid(csv_text, today=None):
     """Return list of days: {date, lines}, in sheet order. lines = the day's cell text."""
     rows = list(csv.reader(io.StringIO(csv_text)))
     if not rows:
         raise ValueError("sheet is empty")
-    title_year = re.search(r"\b(20\d\d)\b", rows[0][0] if rows[0] else "")
-    year = int(title_year.group(1)) if title_year else (today or date.today()).year
+    year = title_year(rows[0][0] if rows[0] else "") or (today or date.today()).year
 
     days, week_dates, week_cells, prev_month = [], None, None, None
 
@@ -112,19 +149,23 @@ def parse_grid(csv_text, today=None):
     for row in rows[1:]:
         row = (row + [""] * 7)[:7]
         cells = [c.strip() for c in row]
-        if all(DATE_RE.match(c) for c in cells):
+        if is_header_row(cells):
+            continue
+        if is_date_row(cells):
             flush()
             week_dates = []
-            for c in cells:
-                dt = datetime.strptime(f"{c}-{year}", "%d-%b-%Y").date()
+            for c in filter(None, cells):
+                m = DATE_RE.match(c)
+                day, mon = m.group(1) or m.group(4), m.group(2) or m.group(3)
+                dt = datetime.strptime(f"{day}-{mon}-{year}", "%d-%b-%Y").date()
                 if prev_month is not None and dt.month < prev_month - 6:
                     year += 1
                     dt = dt.replace(year=year)
                 prev_month = dt.month
                 week_dates.append(dt)
-            week_cells = [[] for _ in range(7)]
+            week_cells = [[] for _ in week_dates]
         elif week_dates:
-            for i, c in enumerate(cells):
+            for i, c in enumerate(cells[:len(week_dates)]):
                 if c:
                     week_cells[i].append(c)
     flush()
@@ -152,22 +193,26 @@ def build_events(days):
         for ln in lines:
             tm = TEAM_RE.match(ln)
             if tm:
-                team, rest = tm.group(1).lower(), tm.group(2)
-                time_m = TIME_RE.match(rest)
+                time_m = TIME_RE.match(tm.group(2))
                 if not time_m:
-                    continue  # e.g. "10u Tue OFF": no event, still shown in the description
+                    # "10u Tue OFF": no event, still shown in the description.
+                    # "16u & 18u Regional Junior Olympics": an all-day note.
+                    if not OFF_RE.search(ln):
+                        notes.append(ln)
+                    continue
                 (sh, sm), (eh, em) = parse_time(time_m)
                 loc = find_location(time_m.group(7)) or day_loc
-                events.append({
-                    "uid": f"{d:%Y%m%d}-{team}@nsd-calendar",
-                    "team": team,
-                    "summary": f"{team} Water Polo",
-                    "start": datetime(d.year, d.month, d.day, sh, sm, tzinfo=TZ),
-                    "end": datetime(d.year, d.month, d.day, eh, em, tzinfo=TZ),
-                    "place": loc,
-                    "location": COORDS.get(loc),
-                    "description": describe(loc),
-                })
+                for team in re.findall(r"1[02468]u", tm.group(1).lower()):
+                    events.append({
+                        "uid": f"{d:%Y%m%d}-{team}@nsd-calendar",
+                        "team": team,
+                        "summary": f"{team} Water Polo",
+                        "start": datetime(d.year, d.month, d.day, sh, sm, tzinfo=TZ),
+                        "end": datetime(d.year, d.month, d.day, eh, em, tzinfo=TZ),
+                        "place": loc,
+                        "location": COORDS.get(loc),
+                        "description": describe(loc),
+                    })
             elif not is_location_only(ln):
                 notes.append(ln)
         if notes:
@@ -238,10 +283,18 @@ def read_stamps(path):
     return stamps
 
 
-def to_ics(events, name, previous=None, now=None):
+def kept_uids(previous, first_day):
+    """UIDs in the last feed dated before the sheet's first day. An older sheet made them
+    and the current sheet no longer covers them, so the feed keeps them unchanged."""
+    cutoff = f"{first_day:%Y%m%d}"
+    return sorted(u for u in previous if u[:8].isdigit() and u[:8] < cutoff)
+
+
+def to_ics(events, name, previous=None, now=None, keep=()):
     """previous: read_stamps() of the last feed. Google ignores an edited event unless its
     SEQUENCE or DTSTAMP changes, so an event whose content changed gets SEQUENCE + 1 and
-    DTSTAMP = now; an unchanged one keeps its old values so the file doesn't churn."""
+    DTSTAMP = now; an unchanged one keeps its old values so the file doesn't churn.
+    keep: UIDs from previous to copy as they are (see kept_uids)."""
     previous = previous or {}
     now = now or utc(datetime.now(TZ))
     lines = [
@@ -249,6 +302,9 @@ def to_ics(events, name, previous=None, now=None):
         "METHOD:PUBLISH", f"X-WR-CALNAME:{esc(name)}", "X-WR-TIMEZONE:America/Los_Angeles",
         "REFRESH-INTERVAL;VALUE=DURATION:PT6H", "X-PUBLISHED-TTL:PT6H",
     ]
+    for uid in keep:
+        stamp, seq, body = previous[uid]
+        lines += ["BEGIN:VEVENT", body[0], f"DTSTAMP:{stamp}", f"SEQUENCE:{seq}", *body[1:], "END:VEVENT"]
     for e in events:
         loc = e["location"] or f"Check the spreadsheet: {SHEET_URL}"
         body = [f"UID:{e['uid']}"]
@@ -292,14 +348,20 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     feeds = {"nsd-all.ics": (None, CAL_NAME)}
     feeds.update({f"nsd-{t}.ics": (t, f"{CAL_NAME} {t}") for t in TEAMS})
+    first_day = days[0]["date"]
     old_total = count_events(out / "nsd-all.ics")
-    if old_total and len(events) < old_total * 0.5:
-        sys.exit(f"refusing to publish: {len(events)} events vs {old_total} before (more than halved)")
+    kept_all = len(kept_uids(read_stamps(out / "nsd-all.ics"), first_day))
+    new_total = len(events) + kept_all
+    if old_total and new_total < old_total * 0.5:
+        sys.exit(f"refusing to publish: {new_total} events vs {old_total} before (more than halved)")
 
     for fname, (team, name) in feeds.items():
         subset = [e for e in events if team is None or e["team"] in (team, None)]
-        (out / fname).write_bytes(to_ics(subset, name, read_stamps(out / fname)).encode("utf-8"))
-    print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes -> {out}/")
+        previous = read_stamps(out / fname)
+        keep = kept_uids(previous, first_day)
+        (out / fname).write_bytes(to_ics(subset, name, previous, keep=keep).encode("utf-8"))
+    print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes, "
+          f"{kept_all} kept from before {first_day} -> {out}/")
 
 
 if __name__ == "__main__":
