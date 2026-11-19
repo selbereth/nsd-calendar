@@ -107,6 +107,18 @@ class Parse(unittest.TestCase):
         self.assertNotIn("20270531-note@nsd-calendar", by_uid)  # "are OFF": no note
         self.assertEqual(by_uid["20270606-note@nsd-calendar"]["summary"], "16u & 18u Regional Junior")
 
+    def test_wac_and_servite(self):
+        csv_text = ("Cal 2026\n14-Dec,15-Dec,16-Dec,17-Dec,18-Dec,19-Dec,20-Dec\n"
+                    '16u 6:15-8:00pm at WAC,14u 8:00-9:00am WAC Oside,,,,"at SERVITE HS, Anaheim",\n'
+                    ",,,,,12u/14u/16u/18u Scrimmages,\n")
+        by_uid = {e["uid"]: e for e in s.build_events(s.parse_grid(csv_text))}
+        self.assertEqual(by_uid["20261214-16u@nsd-calendar"]["location"], s.COORDS["WAC"])
+        self.assertEqual(by_uid["20261215-14u@nsd-calendar"]["location"], s.COORDS["WAC"])
+        note = by_uid["20261219-note@nsd-calendar"]
+        self.assertEqual(note["summary"], "12u/14u/16u/18u Scrimmages")
+        self.assertEqual(note["location"], s.COORDS["Servite HS"])
+        self.assertTrue(note["description"].startswith("Servite HS\n\n"))
+
     def test_time_edge_cases(self):
         m = s.TIME_RE.match("11:30-1:00pm")
         self.assertEqual(s.parse_time(m), ((11, 30), (13, 0)))

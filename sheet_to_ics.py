@@ -41,6 +41,8 @@ LOCATIONS = [
     (re.compile(r"old\s+vida", re.I), "Old VIDA"),
     (re.compile(r"\bvmms\b", re.I), "VMMS"),
     (re.compile(r"\bwave\b", re.I), "The Wave"),
+    (re.compile(r"\bwac\b(\s+oside)?", re.I), "WAC"),  # "WAC" and "WAC Oside": one pool
+    (re.compile(r"\bservite\b(\s+hs)?(\s*,\s*anaheim)?", re.I), "Servite HS"),
 ]
 # Parking-lot coordinates used as the LOCATION. No venue name: Google resolves names
 # and street addresses to the wrong lot. The name goes at the top of the description.
@@ -48,6 +50,8 @@ COORDS = {
     "Old VIDA": "33.204396,-117.2575485",
     "VMMS": "33.2046006,-117.2373799",
     "The Wave": "33.199571,-117.245795",
+    "WAC": "33.2055438,-117.3175868",
+    "Servite HS": "33.8457608,-117.9494694",
 }
 # A Saturday note like "2 games each day" spans Sunday too; the sheet text just spills
 # over the empty Sunday box, so nothing in the CSV says so.
