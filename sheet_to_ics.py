@@ -283,10 +283,18 @@ def read_stamps(path):
     return stamps
 
 
-def to_ics(events, name, previous=None, now=None):
+def kept_uids(previous, first_day):
+    """UIDs in the last feed dated before the sheet's first day. An older sheet made them
+    and the current sheet no longer covers them, so the feed keeps them unchanged."""
+    cutoff = f"{first_day:%Y%m%d}"
+    return sorted(u for u in previous if u[:8].isdigit() and u[:8] < cutoff)
+
+
+def to_ics(events, name, previous=None, now=None, keep=()):
     """previous: read_stamps() of the last feed. Google ignores an edited event unless its
     SEQUENCE or DTSTAMP changes, so an event whose content changed gets SEQUENCE + 1 and
-    DTSTAMP = now; an unchanged one keeps its old values so the file doesn't churn."""
+    DTSTAMP = now; an unchanged one keeps its old values so the file doesn't churn.
+    keep: UIDs from previous to copy as they are (see kept_uids)."""
     previous = previous or {}
     now = now or utc(datetime.now(TZ))
     lines = [
@@ -294,6 +302,9 @@ def to_ics(events, name, previous=None, now=None):
         "METHOD:PUBLISH", f"X-WR-CALNAME:{esc(name)}", "X-WR-TIMEZONE:America/Los_Angeles",
         "REFRESH-INTERVAL;VALUE=DURATION:PT6H", "X-PUBLISHED-TTL:PT6H",
     ]
+    for uid in keep:
+        stamp, seq, body = previous[uid]
+        lines += ["BEGIN:VEVENT", body[0], f"DTSTAMP:{stamp}", f"SEQUENCE:{seq}", *body[1:], "END:VEVENT"]
     for e in events:
         loc = e["location"] or f"Check the spreadsheet: {SHEET_URL}"
         body = [f"UID:{e['uid']}"]
@@ -337,14 +348,20 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     feeds = {"nsd-all.ics": (None, CAL_NAME)}
     feeds.update({f"nsd-{t}.ics": (t, f"{CAL_NAME} {t}") for t in TEAMS})
+    first_day = days[0]["date"]
     old_total = count_events(out / "nsd-all.ics")
-    if old_total and len(events) < old_total * 0.5:
-        sys.exit(f"refusing to publish: {len(events)} events vs {old_total} before (more than halved)")
+    kept_all = len(kept_uids(read_stamps(out / "nsd-all.ics"), first_day))
+    new_total = len(events) + kept_all
+    if old_total and new_total < old_total * 0.5:
+        sys.exit(f"refusing to publish: {new_total} events vs {old_total} before (more than halved)")
 
     for fname, (team, name) in feeds.items():
         subset = [e for e in events if team is None or e["team"] in (team, None)]
-        (out / fname).write_bytes(to_ics(subset, name, read_stamps(out / fname)).encode("utf-8"))
-    print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes -> {out}/")
+        previous = read_stamps(out / fname)
+        keep = kept_uids(previous, first_day)
+        (out / fname).write_bytes(to_ics(subset, name, previous, keep=keep).encode("utf-8"))
+    print(f"{len(days)} days, {len(practices)} practices, {len(events) - len(practices)} notes, "
+          f"{kept_all} kept from before {first_day} -> {out}/")
 
 
 if __name__ == "__main__":

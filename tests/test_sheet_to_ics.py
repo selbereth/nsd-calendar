@@ -1,6 +1,7 @@
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from datetime import date
 from pathlib import Path
 
@@ -138,6 +139,37 @@ class Ics(unittest.TestCase):
         uids = [ln for ln in text.split("\r\n") if ln.startswith("UID:")]
         self.assertEqual(len(uids), len(set(uids)))
         self.assertIn("Check the spreadsheet", text)
+
+    def test_new_sheet_keeps_events_from_before_it(self):
+        week = (",".join(["10u 6:00-7:00pm at VMMS"] * 3 + [""] * 4) + "\n" +
+                ",".join(["12u 6:00-7:30pm at VMMS"] * 3 + [""] * 4))
+        later = ("Winter Calendar 2026\n9-Nov,10-Nov,11-Nov,12-Nov,13-Nov,14-Nov,15-Nov\n" + week +
+                 "\n16-Nov,17-Nov,18-Nov,19-Nov,20-Nov,21-Nov,22-Nov\n" + week +
+                 "\n23-Nov,24-Nov,25-Nov,26-Nov,27-Nov,28-Nov,29-Nov\n" + week + "\n")
+
+        def blocks(path):
+            text = path.read_bytes().decode("utf-8")
+            return {b.split("\r\n", 2)[1]: b for b in text.split("BEGIN:VEVENT")[1:]}
+
+        with tempfile.TemporaryDirectory() as d:
+            csv_path = Path(d) / "later.csv"
+            csv_path.write_text(later, encoding="utf-8")
+            with mock.patch.object(sys, "argv", ["x", "--csv", str(ROOT / "tests" / "fixture.csv"), "--out", d]):
+                s.main()
+            fall = {f: blocks(Path(d) / f) for f in ("nsd-all.ics", "nsd-12u.ics")}
+            with mock.patch.object(sys, "argv", ["x", "--csv", str(csv_path), "--out", d]):
+                s.main()
+            for f, old in fall.items():
+                new = blocks(Path(d) / f)
+                before = {u: b for u, b in old.items() if u[4:12] < "20261109"}
+                self.assertTrue(before)
+                for uid, block in before.items():
+                    self.assertEqual(new.get(uid), block)  # copied unchanged
+                self.assertNotIn("UID:20261112-12u@nsd-calendar", new)  # fall sheet's, now replaced
+                self.assertIn("UID:20261114-note@nsd-calendar", old)
+                self.assertNotIn("UID:20261114-note@nsd-calendar", new)
+            self.assertIn("UID:20261109-10u@nsd-calendar", blocks(Path(d) / "nsd-all.ics"))
+            self.assertNotIn("UID:20260908-10u@nsd-calendar", fall["nsd-12u.ics"])
 
     def test_changed_event_gets_new_stamp_and_sequence(self):
         events = s.build_events(s.parse_grid(FIXTURE))

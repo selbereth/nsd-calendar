@@ -21,6 +21,10 @@ Edits: Google ignores a changed event unless its SEQUENCE or DTSTAMP changes, so
 compares every event with the feed already in `docs/` and, if its content changed, bumps
 SEQUENCE and sets DTSTAMP to now. Unchanged events keep their old values.
 
+Past seasons: each run copies, unchanged, every event in the old feed dated before the
+sheet's first day. So a new sheet for a new season adds to the feeds and does not wipe
+the old season. A fix to a past event in an old sheet no longer reaches the feeds.
+
 If the sheet layout changes so it no longer parses, the job fails (GitHub emails you)
 and the last good feeds stay up. Run locally: `python3 sheet_to_ics.py --out docs`;
 tests: `python3 tests/test_sheet_to_ics.py`. Times assume America/Los_Angeles.
